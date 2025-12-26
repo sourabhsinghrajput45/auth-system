@@ -1,11 +1,31 @@
-FROM eclipse-temurin:21-jre
+# ===============================
+# Build stage
+# ===============================
+FROM eclipse-temurin:21-jdk AS build
+WORKDIR /build
 
+# Copy Maven wrapper and config
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+
+# Download dependencies (cached)
+RUN ./mvnw -B dependency:go-offline
+
+# Copy source code
+COPY src src
+
+# Build Quarkus fast-jar
+RUN ./mvnw -B package -DskipTests
+
+# ===============================
+# Runtime stage
+# ===============================
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 
-# Copy the entire Quarkus fast-jar structure
-COPY target/quarkus-app/ /app/
+# Copy built app from build stage
+COPY --from=build /build/target/quarkus-app/ /app/
 
 EXPOSE 8080
-
-# Run Quarkus the correct way
 CMD ["java", "-jar", "/app/quarkus-run.jar"]
