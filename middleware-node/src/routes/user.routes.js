@@ -16,7 +16,7 @@ router.post("/auth-status", async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;
 
-    // ❌ no refresh token → not logged in
+    //  no refresh token → not logged in
     if (!refreshToken) {
       return res.status(200).json({
         authenticated: false,
@@ -24,7 +24,7 @@ router.post("/auth-status", async (req, res) => {
       });
     }
 
-    // ✅ use refresh token to check user state
+    //  use refresh token to check user state
     const status = await quarkus.getAuthStatusByRefresh(refreshToken);
 
     return res.status(200).json({
@@ -33,7 +33,7 @@ router.post("/auth-status", async (req, res) => {
       email: status.email,
     });
   } catch (err) {
-    // 🔴 NEVER 401 here
+    // NEVER 401 here
     return res.status(200).json({
       authenticated: false,
       emailVerified: false,

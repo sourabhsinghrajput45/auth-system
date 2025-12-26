@@ -37,7 +37,7 @@ public class AccessTokenService {
         AccessToken token = new AccessToken();
         token.setUser(user);
         token.setToken(generateTokenValue());
-        token.setCreatedAt(now);                      // ← THIS WAS MISSING
+        token.setCreatedAt(now);                      
         token.setExpiresAt(now.plus(15, ChronoUnit.MINUTES));
         token.setRevoked(false);
 

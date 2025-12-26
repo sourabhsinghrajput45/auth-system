@@ -56,7 +56,7 @@ public class AuthResource {
         EmailVerificationToken token =
                 emailVerificationService.createToken(user);
 
-        // ✅ async AFTER transaction
+        //  async AFTER transaction
         executor.execute(() ->
                 emailVerificationService.sendVerificationEmail(
                         user.getEmail(),
@@ -148,7 +148,7 @@ public class AuthResource {
             ).build();
         }
 
-        // 1️⃣ Validate refresh token
+        //  Validate refresh token
         RefreshToken refreshToken = refreshTokenService
                 .findValid(request.refreshToken)
                 .orElse(null);
@@ -161,10 +161,10 @@ public class AuthResource {
             ).build();
         }
 
-        // 2️⃣ Load user
+        //  Load user
         User user = refreshToken.getUser();
 
-        // 3️⃣ Return verification state (NO AUTH REQUIRED)
+        //  Return verification state (NO AUTH REQUIRED)
         return Response.ok(
                 Map.of(
                         "email", user.getEmail(),

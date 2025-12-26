@@ -17,7 +17,7 @@ const handleSubmit = async (e) => {
   const result = await authAPI.login(email, password);
 
   if (result.ok) {
-    onLoginSuccess(result.data); // ✅ ONLY THIS
+    onLoginSuccess(result.data); //  ONLY THIS
   } else {
     setError(result.data.message || "Login failed");
   }

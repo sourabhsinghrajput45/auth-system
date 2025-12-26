@@ -9,7 +9,7 @@ router.post("/signup", async (req, res) => {
 
     await quarkus.signup(email, password);
 
-    // ✅ Always return predictable JSON
+    //  Always return predictable JSON
     return res.status(201).json({
       success: true,
       message: "Signup successful. Please verify your email.",
@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
       })
       .json({
         message: data.message,
-        emailVerified: data.emailVerified === true, // 👈 ADD THIS
+        emailVerified: data.emailVerified === true, //  ADD THIS
       });
   } catch (err) {
     res.status(401).json({ message: err.response?.data || "Login failed" });

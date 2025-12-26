@@ -32,9 +32,9 @@ public class EmailVerificationService {
 
 
     /**
-     * 🔒 TRANSACTIONAL ONLY
+     *      TRANSACTIONAL ONLY
      * Creates and persists the verification token.
-     * ❌ NO async, ❌ NO email sending here.
+     *  NO async,  NO email sending here.
      */
     @Transactional
     public EmailVerificationToken createToken(User user) {
@@ -53,7 +53,7 @@ public class EmailVerificationService {
     }
 
     /**
-     * 🔒 TRANSACTIONAL
+     *TRANSACTIONAL
      * Verifies email and updates user + token state.
      */
     @Transactional
@@ -81,7 +81,7 @@ public class EmailVerificationService {
     }
 
     /**
-     * 📤 NON-TRANSACTIONAL
+     *  NON-TRANSACTIONAL
      * Sends verification email.
      * Safe to call asynchronously AFTER DB commit.
      */

@@ -27,7 +27,7 @@ public class AccessTokenFilter implements ContainerRequestFilter {
 
         String path = requestContext.getUriInfo().getPath();
 
-        // ✅ Allow auth endpoints
+        //  Allow auth endpoints
         if (path.startsWith("auth") || path.startsWith("/auth")) {
             return;
         }
@@ -59,7 +59,7 @@ public class AccessTokenFilter implements ContainerRequestFilter {
 
         User user = token.getUser();
 
-        // ✅ THIS IS THE KEY PART
+        // THIS IS THE KEY PART
         requestContext.setSecurityContext(
                 new UserSecurityContext(
                         user,

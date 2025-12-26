@@ -51,7 +51,7 @@ public class TokenRefreshResource {
                     .build();
         }
 
-        // 🔁 ROTATION (this is the core security rule)
+        // ROTATION (this is the core security rule)
         token.setRevoked(true);
 
         var user = token.getUser();

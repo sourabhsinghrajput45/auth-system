@@ -23,7 +23,7 @@ export default function App() {
    */
   const [page, setPage] = useState("login");
 
-  // 🔹 Initial auth bootstrap
+  //  Initial auth bootstrap
   useEffect(() => {
     const bootstrap = async () => {
       try {

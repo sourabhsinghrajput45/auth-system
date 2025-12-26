@@ -28,10 +28,10 @@ useEffect(() => {
     }
   };
 
-  // 🔥 check immediately
+  //  check immediately
   checkStatus();
 
-  // 🔁 then poll faster
+  //  then poll faster
   const interval = setInterval(checkStatus, 1500);
 
   return () => {
