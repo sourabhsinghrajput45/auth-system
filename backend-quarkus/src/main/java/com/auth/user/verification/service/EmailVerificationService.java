@@ -1,4 +1,5 @@
 package com.auth.user.verification.service;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.auth.user.entity.User;
 import com.auth.user.service.UserService;
@@ -25,6 +26,10 @@ public class EmailVerificationService {
 
     @Inject
     com.auth.common.mail.MailService mailService;
+
+    @ConfigProperty(name = "app.base-url")
+    String baseUrl;
+
 
     /**
      * 🔒 TRANSACTIONAL ONLY
@@ -83,7 +88,8 @@ public class EmailVerificationService {
     public void sendVerificationEmail(String email, String token) {
 
         String verificationLink =
-                "http://localhost:8080/auth/verify?token=" + token;
+            baseUrl + "/auth/verify?token=" + token;
+
 
         mailService.sendEmail(
                 email,
