@@ -15,9 +15,9 @@ Each layer has a clear responsibility and communicates over HTTP using well-defi
 ```
 root/
 │
-├── frontend/        # React application (Vite)
-├── middleware/      # Node.js Express middleware
-└── backend/         # Quarkus authentication service
+├── frontend-web/        # React application (Vite)
+├── middleware-node/      # Node.js Express middleware
+└── backend-quarkus/         # Quarkus authentication service
 ```
 
 ---
