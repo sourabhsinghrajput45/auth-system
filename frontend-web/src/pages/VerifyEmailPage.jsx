@@ -90,7 +90,7 @@ useEffect(() => {
         </button> */}
 
         <div className="mt-6 text-xs text-gray-400">
-          You may need to Log In again to continue.
+          You may need to Log In again after verification in order continue.
         </div>
 
 <button
