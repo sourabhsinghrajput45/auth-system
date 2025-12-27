@@ -39,11 +39,13 @@ router.post("/login", async (req, res) => {
     res
       .cookie("accessToken", data.accessToken, {
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "none",
+        secure: true,
       })
       .cookie("refreshToken", data.refreshToken ?? "", {
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "none",
+        secure: true,
       })
       .json({
         message: data.message,
@@ -68,11 +70,13 @@ router.post("/refresh", async (req, res) => {
     res
       .cookie("accessToken", data.accessToken, {
         httpOnly: true,
-        sameSite: "strict",
+          sameSite: "none",
+          secure: true,
       })
       .cookie("refreshToken", data.refreshToken, {
         httpOnly: true,
-        sameSite: "strict",
+          sameSite: "none",
+          secure: true,
       })
       .json({ message: "Token refreshed" });
   } catch {
@@ -98,10 +102,17 @@ router.post("/logout", async (req, res) => {
     await quarkus.logout(accessToken);
   }
 
-  res
-    .clearCookie("accessToken")
-    .clearCookie("refreshToken")
-    .json({ message: "Logged out" });
+res
+  .clearCookie("accessToken", {
+    sameSite: "none",
+    secure: true,
+  })
+  .clearCookie("refreshToken", {
+    sameSite: "none",
+    secure: true,
+  })
+  .json({ message: "Logged out" });
+
 });
 
 module.exports = router;

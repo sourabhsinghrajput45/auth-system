@@ -8,12 +8,24 @@ const userRoutes = require("./src/routes/user.routes");
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://auth-system-blue.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // Vite frontend
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow server-to-server
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
   })
 );
+
 
 app.use(express.json());
 app.use(cookieParser());
