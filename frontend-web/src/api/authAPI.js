@@ -65,7 +65,7 @@ const authAPI = {
 
 getAuthStatus: async () => {
   try {
-    const response = await fetch("/api/auth-status", {
+    const response = await fetch(`${API_BASE_URL}/auth-status`, {
         method: "POST",
         credentials: "include",
     });
