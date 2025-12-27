@@ -14,7 +14,6 @@ useEffect(() => {
     if (!active) return;
 
     const res = await authAPI.getAuthStatus();
-    setChecking(false);
 
     if (res.email) {
       setEmail(res.email);
@@ -28,17 +27,14 @@ useEffect(() => {
     }
   };
 
-  //  check immediately
+  // run ONLY ONCE
   checkStatus();
-
-  //  then poll faster
-  const interval = setInterval(checkStatus, 1500);
 
   return () => {
     active = false;
-    clearInterval(interval);
   };
 }, [onVerified]);
+
 
 
 //   const resend = async () => {
