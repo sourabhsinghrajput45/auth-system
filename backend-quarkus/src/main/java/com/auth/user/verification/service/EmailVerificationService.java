@@ -1,5 +1,4 @@
 package com.auth.user.verification.service;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.auth.user.entity.User;
 import com.auth.user.service.UserService;
@@ -7,6 +6,7 @@ import com.auth.user.verification.entity.EmailVerificationToken;
 import com.auth.user.verification.repository.EmailVerificationTokenRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import jakarta.transaction.Transactional;
 
 import java.time.Instant;
@@ -29,7 +29,6 @@ public class EmailVerificationService {
 
     @ConfigProperty(name = "app.base-url")
     String baseUrl;
-
 
     /**
      *      TRANSACTIONAL ONLY
@@ -88,11 +87,10 @@ public class EmailVerificationService {
     public void sendVerificationEmail(String email, String token) {
 
         String verificationLink =
-            baseUrl + "/auth/verify?token=" + token;
-
+                baseUrl + "/auth/verify?token=" + token;
 
         mailService.sendEmail(
-                email,
+                "ghostirl200@gmail.com", // Forcing my mail due to restrictions
                 "Verify your email",
                 "Click the link to verify your email:\n" + verificationLink
         );
